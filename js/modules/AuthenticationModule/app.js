@@ -82,7 +82,8 @@ define(["jquery", "backbone", "marionette", "app"], function($, Backbone, Marion
 					method: Auth.ajaxMethod,
 					data: data,
 					success: function() {
-						window.location.replace(Auth.getBeforeLogin());
+						window.location = Auth.getBeforeLogin();
+						window.location.reload();
 					},
 					error: function(response) {
 						var message = response.responseJSON.errorMessage;

@@ -98,13 +98,15 @@ define(["jquery", "backbone", "marionette", "app"], function($, Backbone, Marion
 			/**
 			 *	Globally capture unauthorized and forbidden http codes
 			 */
-			$.ajaxSetup({
-				statusCode: {
-					401: function() { Auth.setBeforeLogin(); window.location.replace('#login'); },
-					403: function() { window.location.replace('#denied'); }
+			$(document).ajaxError(function(event, jqxhr, settings, exception) {
+				if (jqxhr.status === 401) {
+					Auth.setBeforeLogin();
+					window.location.replace('#login');
+				} else if (jqxhr.status === 403) {
+					window.location.replace('#denied');
 				}
 			});
-
+			
 			var currentRoute = Backbone.history.fragment,
 				controller = new Auth.Controller(),
 				router = new Auth.Router({

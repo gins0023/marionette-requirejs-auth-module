@@ -27,7 +27,7 @@ define(["jquery", "backbone", "marionette", "app"], function($, Backbone, Marion
 		 */
 		Auth.setBeforeLogin = function() {
 			 var uri = Backbone.history.fragment;
-			 this.beforeLogin = uri === 'login' || uri === 'logout' ? this.defaultRoute : '#' + Backbone.history.fragment;
+			 this.beforeLogin = uri === 'login' || uri === 'logout' || uri === '' ? this.defaultRoute : '#' + Backbone.history.fragment;
 		};
 
 		Auth.getBeforeLogin = function() {

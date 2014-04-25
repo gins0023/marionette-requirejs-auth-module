@@ -52,12 +52,16 @@ define(["jquery", "backbone", "marionette", "app"], function($, Backbone, Marion
 				});
 			},
 
+			/**
+			 * Hit logout endpoint.  On success, return user to 
+			 * login page
+			 */
 			logout: function() {
 				$.ajax({
 					url: Auth.logoutUrl,
 					method: 'GET',
 					success: function() {
-						window.location = Auth.defaultRoute;
+						window.location = '#login'; 
 						window.location.reload();
 					}
 				});
